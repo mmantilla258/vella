@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Vella · Inventario</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="inventario.css">
+</head>
+<body>
+  <!-- Entrada -->
+  <section id="pantallaLogin" class="login" hidden>
+    <img src="logo.webp" alt="Vella" class="login-logo">
+    <h1>Inventario</h1>
+    <div id="zonaLogin"></div>
+    <p id="errorLogin" class="error" role="alert"></p>
+  </section>
+
+  <!-- Panel -->
+  <div id="pantallaApp" hidden>
+    <header class="barra">
+      <span class="marca">Vella</span>
+      <span id="quien" class="quien"></span>
+      <button class="btn-texto" data-accion="salir">Salir</button>
+    </header>
+    <p id="avisoDemo" class="aviso" hidden>Modo demo: los datos quedan solo en este navegador.</p>
+    <nav class="pestanas" aria-label="Secciones">
+      <button class="pestana activa" data-vista="productos">Productos</button>
+      <button class="pestana" data-vista="movimientos">Movimientos</button>
+    </nav>
+    <main id="contenido"></main>
+  </div>
+
+  <!-- Detalle de producto -->
+  <dialog id="dlgProducto">
+    <header class="dlg-cabeza">
+      <h2 id="tituloProducto"></h2>
+      <button class="btn-texto" data-accion="cerrar" aria-label="Cerrar">✕</button>
+    </header>
+    <nav class="pestanas" id="pestanasProducto" aria-label="Secciones del producto">
+      <button class="pestana activa" data-seccion="datos">Datos</button>
+      <button class="pestana" data-seccion="competencia">Competencia</button>
+      <button class="pestana" data-seccion="proveedores">Proveedores</button>
+    </nav>
+    <div id="cuerpoProducto" class="dlg-cuerpo"></div>
+  </dialog>
+
+  <!-- Movimiento de inventario -->
+  <dialog id="dlgStock">
+    <form id="formStock" method="dialog">
+      <header class="dlg-cabeza">
+        <h2 id="tituloStock"></h2>
+        <button type="button" class="btn-texto" data-accion="cerrar" aria-label="Cerrar">✕</button>
+      </header>
+      <div class="dlg-cuerpo">
+        <p id="ayudaStock" class="suave"></p>
+        <label>Cantidad <input id="stockCantidad" type="number" min="0" step="1" inputmode="numeric" required></label>
+        <label>Nota (opcional) <input id="stockNota" maxlength="120"></label>
+        <button class="btn" type="submit">Confirmar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="inventario.js"></script>
+</body>
+</html>

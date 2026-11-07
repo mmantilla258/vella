@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vella · Cuidado de la piel en Colombia</title>
+  <meta name="description" content="Productos de cuidado de la piel. Haz tu pedido por WhatsApp y paga por Bre-B.">
+  <meta property="og:title" content="Vella">
+  <meta property="og:description" content="Cuidado de la piel. Haz tu pedido por WhatsApp.">
+  <meta property="og:image" content="vista-previa.jpg">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%238f5f63'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='21' fill='%23fff' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tienda.css">
+</head>
+<body>
+  <header class="barra">
+    <a class="marca" href="#inicio">Vella</a>
+    <button class="btn-carrito" data-accion="carrito" aria-haspopup="dialog">Carrito <span id="contador" class="burbuja">0</span></button>
+  </header>
+
+  <main id="inicio">
+    <section class="portada">
+      <img src="portada.webp" alt="Vella" width="1200" height="655">
+    </section>
+
+    <section class="seccion" aria-labelledby="tituloCatalogo">
+      <h1 id="tituloCatalogo">Nuestros productos</h1>
+      <div id="filtros" class="filtros" role="group" aria-label="Filtrar por categoría"></div>
+      <div id="catalogo" class="catalogo" aria-live="polite"><p class="suave">Cargando productos…</p></div>
+    </section>
+
+    <section class="seccion pasos-marco" aria-labelledby="tituloPasos">
+      <h2 id="tituloPasos">Cómo comprar</h2>
+      <ol class="pasos">
+        <li><strong>Elige</strong> tus productos y agrégalos al carrito.</li>
+        <li><strong>Envía</strong> tu pedido por WhatsApp. Te confirmamos disponibilidad y envío.</li>
+        <li><strong>Paga</strong> por transferencia con Bre-B y te enviamos tu pedido.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p class="marca">Vella</p>
+    <nav id="redes" class="redes" aria-label="Redes sociales"></nav>
+  </footer>
+
+  <dialog id="dlgDetalle">
+    <button class="cerrar" data-accion="cerrar" aria-label="Cerrar">✕</button>
+    <div id="cuerpoDetalle"></div>
+  </dialog>
+
+  <dialog id="dlgCarrito">
+    <header class="dlg-cabeza">
+      <h2>Tu pedido</h2>
+      <button class="cerrar-fijo" data-accion="cerrar" aria-label="Cerrar">✕</button>
+    </header>
+    <div id="cuerpoCarrito" class="dlg-cuerpo"></div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="tienda.js"></script>
+</body>
+</html>

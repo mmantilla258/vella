@@ -1,0 +1,46 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function perfilRuta() {
+      return /databases/$(database)/documents/usuarios/$(request.auth.uid);
+    }
+    // Es del equipo quien inició sesión Y tiene documento en usuarios/ (se crea a mano en la consola)
+    function esEquipo() {
+      return request.auth != null && exists(perfilRuta());
+    }
+    function esAdmin() {
+      return esEquipo() && get(perfilRuta()).data.rol == 'admin';
+    }
+    function soloCambia(campos) {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(campos);
+    }
+
+    // Cada quien lee solo su perfil. Nadie lo cambia desde la página.
+    match /usuarios/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+
+    // Catálogo público: la tienda lo lee sin iniciar sesión.
+    match /productos/{id} {
+      allow read: if true;
+      allow create, delete: if esAdmin();
+      allow update: if esAdmin() || (esEquipo() && soloCambia(['disponible', 'actualizado']));
+    }
+
+    // Costos, cantidad, competencia y proveedores: nunca públicos.
+    match /privado/{id} {
+      allow read: if esEquipo();
+      allow create, delete: if esAdmin();
+      allow update: if esAdmin() || (esEquipo() && soloCambia(['cantidad', 'actualizado']));
+    }
+
+    // Historial: se agrega, pero nadie lo edita ni lo borra.
+    match /movimientos/{id} {
+      allow read: if esEquipo();
+      allow create: if esEquipo() && request.resource.data.uid == request.auth.uid;
+      allow update, delete: if false;
+    }
+  }
+}
