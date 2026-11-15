@@ -8,7 +8,9 @@ y pide confirmación antes de decisiones que no se puedan deshacer.
 - Hosting: GitHub Pages (repositorio público). No hacer `git push` sin que Miguel lo pida.
 - Firebase plan Spark, SDK modular por CDN fijado en `12.19.0`. Sin Firebase Storage: las fotos nuevas se reducen
   en el navegador y se guardan como data URL en `productos/{id}.foto`.
-- Sin `apiKey` en `config.js` todo corre en modo demo (localStorage).
+- Firebase ya está conectado (proyecto `vella-1f2dd`). Si `config.js` queda sin `apiKey`, todo vuelve al modo demo (localStorage).
+- Al cambiar un `.js` o `.css`, subir el número `?v=` en el `<script>` / `<link>` de `index.html` e `inventario.html`;
+  si no, el navegador sigue usando la copia vieja.
 - Probar en local: `python -m http.server 8123` y abrir `http://localhost:8123/inventario.html`.
 
 ## Datos

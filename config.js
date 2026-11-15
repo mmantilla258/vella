@@ -1,9 +1,13 @@
 // Configuración de Vella.
-// Mientras firebaseConfig esté vacío, el inventario funciona en MODO DEMO:
-// los datos quedan solo en este navegador y sirven únicamente para probar.
+// Si firebaseConfig queda vacío, el inventario vuelve al MODO DEMO (datos solo en este navegador).
 // El objeto firebaseConfig es público por diseño: lo que protege los datos son las reglas de Firestore.
 export const firebaseConfig = {
-  // Pega aquí lo que te da la consola de Firebase (ver CONFIGURAR-FIREBASE.md)
+  apiKey: "AIzaSyDNWYaahLpZ70xyFbyT4WT1-Ag42gRux-Q",
+  authDomain: "vella-1f2dd.firebaseapp.com",
+  projectId: "vella-1f2dd",
+  storageBucket: "vella-1f2dd.firebasestorage.app",
+  messagingSenderId: "490332272581",
+  appId: "1:490332272581:web:87b7a232fa25f2f1803dac"
 };
 
 // Número de WhatsApp Business: indicativo y número, sin + ni espacios. Ejemplo: "573001234567"

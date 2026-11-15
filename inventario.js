@@ -63,6 +63,7 @@ function pintarLogin(mensaje = "") {
     <form id="formLogin">
       <label>Correo <input id="loginCorreo" type="email" autocomplete="username" required></label>
       <label>Contraseña <input id="loginClave" type="password" autocomplete="current-password" required></label>
+      <label class="check"><input id="verClave" type="checkbox">Mostrar contraseña</label>
       <button class="btn" type="submit">Entrar</button>
     </form>`;
 }
@@ -384,6 +385,8 @@ document.addEventListener("input", (e) => {
 });
 
 document.addEventListener("change", async (e) => {
+  // Casilla "Mostrar contraseña": cambia el campo entre puntos y texto visible
+  if (e.target.id === "verClave") { $("loginClave").type = e.target.checked ? "text" : "password"; return; }
   if (e.target.id !== "fotoArchivo" || !e.target.files[0]) return;
   try { $("fotoVista").src = await reducirFoto(e.target.files[0]); }
   catch { avisar("No se pudo leer esa imagen. Prueba con otra.", true); }
